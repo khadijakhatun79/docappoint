@@ -76,6 +76,8 @@ const Hero = () => {
               {/* Overlay */}
               <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(26,33,89,0.85),rgba(26,33,89,0.85))]"></div>
 
+              
+
               {/* Content */}
               <div className="relative z-10 container mx-auto h-full flex items-end px-6">
 

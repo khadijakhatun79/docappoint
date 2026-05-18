@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "animate.css";
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
+import Breadcrumb from "./component/Breadcrumb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
       <Navbar></Navbar>
+      
       {children}
       <Footer></Footer>
       </body>

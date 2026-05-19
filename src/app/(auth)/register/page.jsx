@@ -21,6 +21,7 @@ export default function Register() {
         const { data, error } = await signUp.email({ 
             ...registerData
         })
+        console.log({data, error})
 
         if (error) {
             //console.log(error.message);

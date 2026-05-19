@@ -19,7 +19,7 @@ const Hero = () => {
       subtitle: "Welcome to DocAppoint",
       title: (
         <>
-          Your <span className="text-cyan-400">Health</span>, Our Priority
+          Your <span className="text-[#F96363]">Health</span>, Our Priority
         </>
       ),
       desc: "Book appointments with trusted doctors anytime, anywhere.",
@@ -33,7 +33,7 @@ const Hero = () => {
       title: (
         <>
           In Trusted Hands Guiding Your{" "}
-          <span className="text-cyan-400">Health</span> Journey
+          <span className="text-[#F96363]">Health</span> Journey
         </>
       ),
       desc: "Find experienced specialists and get the best treatment easily.",
@@ -46,7 +46,7 @@ const Hero = () => {
       subtitle: "Fast Appointment System",
       title: (
         <>
-          Caring for Every <span className="text-cyan-400">Patient</span>,
+          Caring for Every <span className="text-[#F96363]">Patient</span>,
           Every Step
         </>
       ),
@@ -128,13 +128,13 @@ const Hero = () => {
                       }`}
                     >
                       <Link href="/all-appointments">
-                        <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-lg font-semibold text-white transition">
+                        <button className="th-btn style1 bg-[#F96363] hover:bg-[#F96363] px-6 py-3 rounded-lg font-semibold text-white transition">
                           {slide.button1}
                         </button>
                       </Link>
 
                       <Link href="/doctors">
-                        <button className="border border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold text-white transition">
+                        <button className="th-btn th-border hover:bg-white/10 px-6 py-3 rounded-lg font-semibold text-white transition">
                           {slide.button2}
                         </button>
                       </Link>

@@ -1,15 +1,10 @@
 import { Button } from "@heroui/react";
 import { Filter } from "lucide-react";
-//import { fetchappointments } from "@/lib/appointments/data";
 import AppointmentCard from "../component/AppointmentCard";
 import AppointmentsHeader from "../component/AppointmentsHeader";
 import Breadcrumb from "../component/Breadcrumb";
+import { fetchappointments } from "../lib/appointments/data";
 
-const fetchappointments = async()=>{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appointment`)
-    const data = res.json();
-    return data || [];
-}
 
 const Appointmentpage = async ({ searchParams }) => {
    

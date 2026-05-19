@@ -36,6 +36,92 @@
   --ripple-ani-duration : 5s;
 }
 
+.th-btn {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    background-color: var(--theme-color);
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: var(--white-color);
+    line-height: 1;
+    padding: 20px 24px;
+    border-radius: 8px;
+    transition: transform 0.3s cubic-bezier(.25, .46, .45, .50);
+    transition-delay: 0s;
+    will-change: transform;
+
+    img {
+        margin-right: 8px;
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, var(--title-color) 25%, transparent 0, transparent 50%, var(--title-color) 0, var(--title-color) 75%, transparent 0);
+        transform: translateY(var(--progress, 100%));
+        transition: transform 0.4s ease;
+        z-index: -1;
+    }
+
+    &:after {
+        --progress: -100%;
+        background: linear-gradient(90deg, transparent 0, transparent 25%, var(--title-color) 0, var(--title-color) 50%, transparent 0, transparent 75%, var(--title-color) 0);
+    }
+
+    &:hover {
+        color: --white-color;
+        transition-delay: .4s;
+
+        &:before,
+        &:after {
+            --progress: 0;
+        }
+    }
+  &.style1 {
+
+        &:before,
+        &:after {
+            background: linear-gradient(90deg, var(--white-color) 25%, transparent 0, transparent 50%, var(--white-color) 0, var(--white-color) 75%, transparent 0);
+        }
+
+        &:after {
+            background: linear-gradient(90deg, transparent 0, transparent 25%, var(--white-color) 0, var(--white-color) 50%, transparent 0, transparent 75%, var(--white-color) 0);
+        }
+
+        &:hover {
+            color: var(--title-color);
+        }
+    }
+     &.th-border {
+        background-color: transparent;
+        border: 1px solid var(--white-color);
+
+        &:before,
+        &:after {
+            background: linear-gradient(90deg, var(--white-color) 25%, transparent 0, transparent 50%, var(--white-color) 0, var(--white-color) 75%, transparent 0);
+        }
+
+        &:after {
+            background: linear-gradient(90deg, transparent 0, transparent 25%, var(--white-color) 0, var(--white-color) 50%, transparent 0, transparent 75%, var(--white-color) 0);
+        }
+
+        &:hover {
+            color: var(--title-color); 
+        }
+    }
+    
+
+
+}
+
 /* swiper-pagination */
 .swiper-pagination { 
     position: absolute; 

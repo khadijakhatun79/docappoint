@@ -22,7 +22,7 @@ const Breadcrumb = () => {
           {/* Home */}
           <Link
             href="/"
-            className="text-white/80 hover:text-white transition"
+            className="text-white hover:text-white transition"
           >
             Home
           </Link>
@@ -37,7 +37,7 @@ const Breadcrumb = () => {
             return (
               <div key={href} className="flex items-center gap-2">
 
-                <span className="text-white/50">/</span>
+                <span className="text-white">/</span>
 
                 <Link
                   href={href}

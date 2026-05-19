@@ -6,6 +6,7 @@ import React from "react";
 
 const AppointmentCard = ({ appointment }) => {
     const {
+        _id,
         name,
         specialty,
         image,
@@ -56,7 +57,7 @@ const AppointmentCard = ({ appointment }) => {
 
                 {/* Title */}
                 <div>
-                    <Link href="#">
+                    <Link href={`/appointments/${_id}`}>
                         <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#F96363] transition-colors line-clamp-2">
                             {name}
                         </h3>

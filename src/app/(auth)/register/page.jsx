@@ -1,35 +1,34 @@
 'use client';
 
 import { Button, Input } from '@heroui/react';
+
 import Link from 'next/link';
 import { User, Mail, Lock, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { signUp } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
-import { signUp } from '@/app/lib/auth-client';
 
 export default function Register() {
     const router = useRouter();
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        // console.log(e.currentTarget);
 
         const formData = new FormData(e.currentTarget)
+        // console.log(formData);
 
         const registerData = Object.fromEntries(formData.entries());
-        //console.log(formData);
 
-        const { data, error } = await signUp.email({ 
+        const { data, error } = await signUp.email({
             ...registerData
         })
-        console.log({data, error})
 
         if (error) {
-            //console.log(error.message);
             toast.error("Registration failed")
             return;
         }
         router.push("/")
-
 
     }
 
@@ -42,10 +41,10 @@ export default function Register() {
 
                         <div className="text-center space-y-2 relative">
                             <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                                Join <span className="text-blue-600">DocAppoint</span>
+                                Join <span className="text-blue-600">Mentora</span>
                             </h2>
                             <p className="text-slate-500 font-medium">Create your account to start learning</p>
-                        </div>
+                        </div>  
 
                         <form
                             className="space-y-6"
@@ -63,6 +62,7 @@ export default function Register() {
                                     required
                                     placeholder="Enter your name"
                                     name="name"
+                                  
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
@@ -80,6 +80,7 @@ export default function Register() {
                                     placeholder="Enter your email"
                                     type="email"
                                     name="email"
+                               
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
@@ -96,6 +97,7 @@ export default function Register() {
                                     placeholder="https://images.unsplash.com/..."
                                     type="url"
                                     name="image"
+                                  
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
@@ -113,6 +115,7 @@ export default function Register() {
                                     placeholder="••••••••"
                                     type="password"
                                     name="password"
+                                
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>

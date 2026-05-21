@@ -1,11 +1,11 @@
 import { Button, Chip } from "@heroui/react";
-import { BookOpen, Clock, LocationEdit, Star } from "lucide-react";
+import { Clock, LocationEdit, Star, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-const AppointmentCard = ({ appointment }) => {
-    const {
+const FeaturedCard = ({ appointment = {} }) => {
+
+   const {
         _id,
         name,
         specialty,
@@ -57,7 +57,7 @@ const AppointmentCard = ({ appointment }) => {
 
                 {/* Title */}
                 <div>
-                    <Link href={`/appointments/${_id}`}>
+                    <Link href={`/appointment/${_id}`}>
                         <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#F96363] transition-colors line-clamp-2">
                             {name}
                         </h3>
@@ -105,4 +105,4 @@ const AppointmentCard = ({ appointment }) => {
     );
 };
 
-export default AppointmentCard;
+export default FeaturedCard;

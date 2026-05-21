@@ -6,10 +6,8 @@ import Link from 'next/link';
 
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 
-
 import Image from 'next/image';
-import { signIn } from '@/app/lib/auth-client';
-//import { signIn } from '@/lib/auth-client';
+import { signIn } from '@/lib/auth-client';
 
 export default function Login() {
     const handleLogin = async (e) => {
@@ -94,7 +92,7 @@ export default function Login() {
                                     placeholder="Enter your email"
                                     type="email"
                                     name="email"
-                                    startContent={<Mail className="w-5 h-5 text-slate-400" />}
+                                   
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
@@ -112,7 +110,7 @@ export default function Login() {
                                     placeholder="••••••••"
                                     type="password"
                                     name="password"
-                                    startContent={<Lock className="w-5 h-5 text-slate-400" />}
+                                  
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>

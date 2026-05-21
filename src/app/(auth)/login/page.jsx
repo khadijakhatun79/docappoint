@@ -8,6 +8,8 @@ import { Mail, Lock, ArrowRight } from 'lucide-react';
 
 import Image from 'next/image';
 import { signIn } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export default function Login() {
     const handleLogin = async (e) => {
@@ -36,7 +38,9 @@ export default function Login() {
 
     }
     return (
-        <div className="min-h-[80vh] flex flex-col bg-slate-50">
+        <div className="min-h-[80vh] flex flex-col">
+        
+    <Breadcrumb></Breadcrumb>
             <div className="flex items-center justify-center p-4">
                 <div className="w-full max-w-md">
                     <div className="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-2xl space-y-8 relative overflow-hidden">
@@ -45,7 +49,7 @@ export default function Login() {
 
                         <div className="text-center space-y-2 relative">
                             <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                                Welcome <span className="text-blue-600">Back</span>
+                                Welcome <span className="text-[#F96363]">Back</span>
                             </h2>
                             <p className="text-slate-500 font-medium">Continue your learning journey today</p>
                         </div>
@@ -93,7 +97,7 @@ export default function Login() {
                                     type="email"
                                     name="email"
                                    
-                                    className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                    className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-[#F96363] transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
 
@@ -111,13 +115,13 @@ export default function Login() {
                                     type="password"
                                     name="password"
                                   
-                                    className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                    className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-[#F96363] transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
                             <div className="flex justify-end">
                                 <Link
                                     href="#"
-                                    className="text-sm font-bold text-blue-600 hover:underline underline-offset-4 transition-all"
+                                    className="text-sm font-bold text-[#F96363] hover:underline underline-offset-4 transition-all"
                                 >
                                     Forgot password?
                                 </Link>
@@ -125,7 +129,7 @@ export default function Login() {
                             <Button
                                 color="primary"
                                 type="submit"
-                                className="w-full h-14 text-lg font-black rounded-2xl shadow-xl shadow-blue-600/20 group"
+                                className="w-full h-14 text-lg font-black rounded-2xl bg-[#F96363] group"
                             >
                                 Sign In <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                             </Button>
@@ -136,7 +140,7 @@ export default function Login() {
                                 New to CourseHub?{' '}
                                 <Link
                                     href="/register"
-                                    className="text-blue-600 font-black hover:underline underline-offset-4 transition-all"
+                                    className="text-[#F96363] font-black hover:underline underline-offset-4 transition-all"
                                 >
                                     Create an account
                                 </Link>

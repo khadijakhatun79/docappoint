@@ -1,5 +1,6 @@
 import AppointmentCard from "@/components/AppointmentCard";
 import AppointmentHeader from "@/components/AppointmentHeader";
+import Breadcrumb from "@/components/Breadcrumb";
 import { fetchAppointments } from "@/lib/appointment/data";
 
 import { Button } from "@heroui/react";
@@ -7,49 +8,60 @@ import { BookOpen, Filter } from "lucide-react";
 
 const AppointmentsPage = async ({ searchParams }) => {
 
-    const appointments = await fetchAppointments(
-        searchParams?.searchTerm || ""
-    );
+  const appointments = await fetchAppointments(
+    searchParams?.search || ""
+  );
 
-    return (
-        <div className="min-h-screen bg-slate-50">
+  return (
+    <div className="min-h-screen bg-slate-50">
 
-            {/* Header */}
-            <AppointmentHeader />
+    
+    <Breadcrumb></Breadcrumb>
 
-            <main className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      {/* Header */}
+      <AppointmentHeader />
 
-                <div className="flex justify-between items-center mb-12">
+      <main className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
 
-                    <h2 className="text-2xl font-bold flex items-center gap-2">
-                        <BookOpen className="w-6 h-6 text-blue-600" />
-                        All Appointments
-                    </h2>
+        <div className="flex justify-between items-center mb-12">
 
-                    <Button
-                        variant="flat"
-                        startContent={<Filter className="w-4 h-4" />}
-                        className="rounded-full font-bold"
-                    >
-                        Filters
-                    </Button>
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            All Appointments
+          </h2>
 
-                </div>
+          <Button
+            variant="flat"
+            startContent={<Filter className="w-4 h-4" />}
+            className="rounded-full font-bold"
+          >
+            Filters
+          </Button>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                    {appointments?.map((appointment) => (
-                        <AppointmentCard
-                            key={appointment._id}
-                            appointment={appointment}
-                        />
-                    ))}
-
-                </div>
-
-            </main>  
         </div>
-    );
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {appointments?.length > 0 ? (
+            appointments.map((appointment) => (
+              <AppointmentCard
+                key={appointment._id}
+                appointment={appointment}
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-20">
+              <h2 className="text-2xl font-bold text-gray-600">
+                No Doctor Found
+              </h2>
+            </div>
+          )}
+
+        </div>
+
+      </main>
+    </div>
+  );
 };
 
-export default AppointmentsPage; 
+export default AppointmentsPage;

@@ -20,7 +20,8 @@ const Hero = () => {
       subtitle: "Welcome to DocAppoint",
       title: (
         <>
-          Your <span className="text-[#F96363]">Health</span>, Our Priority, Care for Every Patient
+          Your <span className="text-[#F96363]">Health</span>, Our
+          Priority, Care for Every Patient
         </>
       ),
       desc: "Book appointments with trusted doctors anytime, anywhere.",
@@ -47,8 +48,9 @@ const Hero = () => {
       subtitle: "Fast Appointment System",
       title: (
         <>
-          Caring for Every  <span className="text-[#F96363]">Patient</span>,
-          Every Step of the Way
+          Caring for Every{" "}
+          <span className="text-[#F96363]">Patient</span>, Every Step
+          of the Way
         </>
       ),
       desc: "Manage bookings, profiles and reviews in one place.",
@@ -59,40 +61,42 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden">
-
+    <section className="relative overflow-hidden">
       <Swiper
         modules={[Autoplay, EffectFade, Pagination]}
         effect="fade"
-        pagination={{ clickable: true }}
+        loop
+        speed={1000}
+        pagination={{
+          clickable: true,
+        }}
         autoplay={{
           delay: 3500,
           disableOnInteraction: false,
         }}
-        loop
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        onSlideChange={(swiper) =>
+          setActiveIndex(swiper.realIndex)
+        }
         className="h-auto"
       >
-
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-
             <div className="relative bg-[url('/assets/banner.png')] bg-cover bg-center min-h-[calc(100vh-90px)]">
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(26,33,89,0.85),rgba(26,33,89,0.85))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(26,33,89,0.88),rgba(26,33,89,0.88))]" />
 
               {/* Content */}
-              <div className="relative z-10 container mx-auto px-6">
+              <div className="relative z-10 max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 min-h-[calc(100vh-90px)]">
+                <div className="grid grid-cols-1 xl:grid-cols-2 items-center gap-10 min-h-[calc(100vh-90px)]">
 
                   {/* LEFT CONTENT */}
-                  <div className="w-full max-w-[840px] py-16 lg:py-24">
+                  <div className="py-16 lg:py-24 text-center xl:text-left">
 
                     {/* Subtitle */}
                     <span
-                      className={`inline-block px-5 py-2 mb-5 rounded-full bg-white/10 text-white text-sm tracking-wide transition-all duration-500 ${
+                      className={`inline-block px-5 py-2 mb-5 rounded-full bg-white/10 backdrop-blur-md text-white text-sm tracking-wide transition-all duration-700 ${
                         activeIndex === index
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-6"
@@ -103,7 +107,7 @@ const Hero = () => {
 
                     {/* Title */}
                     <h1
-                      className={`text-4xl md:text-6xl lg:text-[72px] font-bold text-white mb-6 leading-tight transition-all duration-700 ${
+                      className={`text-4xl sm:text-5xl md:text-6xl xl:text-[72px] font-bold text-white leading-tight transition-all duration-700 ${
                         activeIndex === index
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-8"
@@ -114,7 +118,7 @@ const Hero = () => {
 
                     {/* Description */}
                     <p
-                      className={`text-gray-200 mb-8 max-w-xl text-base md:text-lg transition-all duration-700 ${
+                      className={`mt-6 mb-8 text-gray-200 text-base md:text-lg max-w-2xl mx-auto xl:mx-0 transition-all duration-700 ${
                         activeIndex === index
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-8"
@@ -125,55 +129,51 @@ const Hero = () => {
 
                     {/* Buttons */}
                     <div
-                      className={`relative z-20 flex gap-4 flex-wrap transition-all duration-700 ${
+                      className={`flex flex-col sm:flex-row gap-4 justify-center xl:justify-start transition-all duration-700 ${
                         activeIndex === index
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-8"
                       }`}
                     >
-
-                      <Link href="/all-appointments">
-                        <button className="bg-[#F96363] hover:bg-[#ef4d4d] px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300">
+                      <Link href="/appointment">
+                        <button className="bg-[#F96363] hover:bg-[#ef4d4d] px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105">
                           {slide.button1}
                         </button>
                       </Link>
 
                       <Link href="/doctors">
-                        <button className="border border-white hover:bg-white/10 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300">
+                        <button className="border border-white hover:bg-white/10 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105">
                           {slide.button2}
                         </button>
                       </Link>
-
                     </div>
-
                   </div>
 
                   {/* RIGHT IMAGE */}
-                  <div className="hidden lg:flex justify-center items-end">
+                  <div className=" lg:flex justify-center items-end">
 
                     <Image
                       key={slide.id}
                       src={slide.image}
-                      alt="hero"
-                      width={500}
+                      alt="Doctor Hero"
+                      width={700}
                       height={700}
-                      className="w-[690px] h-auto drop-shadow-2xl"
-                      priority
+                      priority={index === 0}
+                      className={`w-full max-w-[720px] h-auto object-contain drop-shadow-2xl transition-all duration-700 ${
+                        activeIndex === index
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-10"
+                      }`}
                     />
 
                   </div>
-
                 </div>
               </div>
             </div>
-
           </SwiperSlide>
         ))}
       </Swiper>
-
-    
-
-    </div>
+    </section>
   );
 };
 

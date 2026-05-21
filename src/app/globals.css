@@ -137,8 +137,15 @@
     align-items: flex-start;
     transform: translateY(-50%);
     gap: 24px;
+    
 
 }
+@media(max-width: 992px) {  
+.swiper-pagination { 
+    display: none;
+}
+}
+
 .swiper-pagination-bullets .swiper-pagination-bullet {
     display: inline-block;
     --swiper-pagination-bullet-size: 12px;

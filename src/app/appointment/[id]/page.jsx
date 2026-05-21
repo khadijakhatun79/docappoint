@@ -1,11 +1,16 @@
-import EnrollmentButton from "@/components/EnrollmentButton";
+import BookingButton from "@/components/BookingButton";
 import { auth } from "@/lib/auth";
 import { Chip } from "@heroui/react";
-import { MapPin, Star } from "lucide-react";
+import {
+  BriefcaseMedical,
+  Clock3,
+  MapPin,
+  Star,
+} from "lucide-react";
 import { headers } from "next/headers";
 import Image from "next/image";
 
-const fetchSingleAppointment = async (id, token) => {
+const fetchSingleDoctor = async (id, token) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/appointment/${id}`,
@@ -29,25 +34,21 @@ const fetchSingleAppointment = async (id, token) => {
 };
 
 export default async function AppointmentDetails({ params }) {
-
   const { id } = await params;
 
   const session = await auth.api.getToken({
     headers: await headers(),
   });
 
-  
-
   const token = session?.token;
 
-  const appointment = await fetchSingleAppointment(id, token);
+  const doctor = await fetchSingleDoctor(id, token);
 
-  if (!appointment) {
+  if (!doctor) {
     return <NotFound />;
   }
 
   const {
-    _id,
     name,
     image,
     description,
@@ -55,7 +56,10 @@ export default async function AppointmentDetails({ params }) {
     fee,
     rating,
     location,
-  } = appointment;
+    hospital,
+    experience,
+    availability,
+  } = doctor;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -65,17 +69,17 @@ export default async function AppointmentDetails({ params }) {
         {/* LEFT SIDE */}
         <div className="lg:col-span-2 space-y-8">
 
-          {/* Image */}
-          <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-video">
+          {/* Doctor Image */}
+          <div className="relative group overflow-hidden rounded-[2.5rem] aspect-video">
 
             <Image
               src={
                 image ||
-                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200"
+                "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1200"
               }
               alt={name}
               fill
-              className="object-cover transform transition duration-700 group-hover:scale-105"
+              className="object-cover transition duration-700 group-hover:scale-105"
             />
 
             <div className="absolute top-6 left-6">
@@ -91,29 +95,67 @@ export default async function AppointmentDetails({ params }) {
           </div>
 
           {/* Content */}
-          <div className="space-y-4">
+          <div className="space-y-5">
 
-            <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
               {name}
             </h1>
 
-            <p className="text-xl text-slate-500 leading-relaxed">
+            <p className="text-lg text-slate-500 leading-relaxed">
               {description}
             </p>
 
           </div>
 
           {/* Info */}
-          <div className="flex flex-wrap gap-6 pt-8 border-t border-slate-200">
+          <div className="grid sm:grid-cols-2 gap-5 pt-8 border-t border-slate-200">
 
-            <div className="flex items-center gap-2 text-slate-600 font-medium">
-              <Star className="w-5 h-5 text-yellow-500" />
-              {rating || "4.8"} Rating
+            <div className="flex items-center gap-3 bg-white rounded-2xl p-5 shadow-sm border">
+              <Star className="w-6 h-6 text-yellow-500" />
+              <div>
+                <p className="font-bold text-slate-800">
+                  {rating || "4.8"}
+                </p>
+                <p className="text-sm text-slate-500">
+                  Doctor Rating
+                </p>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 text-slate-600 font-medium">
-              <MapPin className="w-5 h-5 text-red-500" />
-              {location || "Dhaka, Bangladesh"}
+            <div className="flex items-center gap-3 bg-white rounded-2xl p-5 shadow-sm border">
+              <MapPin className="w-6 h-6 text-red-500" />
+              <div>
+                <p className="font-bold text-slate-800">
+                  {location || "Dhaka"}
+                </p>
+                <p className="text-sm text-slate-500">
+                  Location
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 bg-white rounded-2xl p-5 shadow-sm border">
+              <BriefcaseMedical className="w-6 h-6 text-[#F96363]" />
+              <div>
+                <p className="font-bold text-slate-800">
+                  {hospital || "Popular Hospital"}
+                </p>
+                <p className="text-sm text-slate-500">
+                  Hospital
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 bg-white rounded-2xl p-5 shadow-sm border">
+              <Clock3 className="w-6 h-6 text-green-500" />
+              <div>
+                <p className="font-bold text-slate-800">
+                  {experience || "10 Years"}
+                </p>
+                <p className="text-sm text-slate-500">
+                  Experience
+                </p>
+              </div>
             </div>
 
           </div>
@@ -133,44 +175,58 @@ export default async function AppointmentDetails({ params }) {
               </p>
 
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-black text-blue-600">
-                  ${fee}
+                <span className="text-5xl font-black text-[#F96363]">
+                  ৳{fee}
                 </span>
               </div>
 
             </div>
 
-            {/* Details */}
+            {/* Availability */}
             <div className="space-y-4">
 
-              <p className="text-slate-700 font-medium">
-                <strong>Specialty:</strong> {specialty}
+              <p className="text-slate-700 font-bold">
+                Available Schedule
               </p>
 
-              <div className="w-full h-px bg-slate-100"></div>
+              <div className="flex flex-wrap gap-2">
 
-              <ul className="space-y-3">
-
-                {[
-                  "Trusted Doctors",
-                  "Secure Appointment",
-                  "24/7 Support",
-                ].map((item, i) => (
-                  <li
+                {availability?.map((time, i) => (
+                  <Chip
                     key={i}
-                    className="flex items-center gap-3 text-sm font-bold text-slate-500"
+                    variant="flat"
+                    color="success"
                   >
-                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                    {item}
-                  </li>
+                    {time}
+                  </Chip>
                 ))}
 
-              </ul>
+              </div>
 
             </div>
 
-            {/* Button */}
-            <EnrollmentButton appointment={appointment} />
+            {/* Features */}
+            <div className="space-y-3 border-t pt-6">
+
+              {[
+                "Trusted Specialist",
+                "Instant Appointment",
+                "Secure Booking",
+                "24/7 Support",
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 text-sm font-semibold text-slate-600"
+                >
+                  <div className="w-2 h-2 rounded-full bg-[#F96363]"></div>
+                  {item}
+                </div>
+              ))}
+
+            </div>
+
+            {/* Booking Button */}
+            <BookingButton doctor={doctor} />
 
             <p className="text-center text-xs text-slate-500 font-bold">
               Secure Booking • Trusted Healthcare
@@ -187,12 +243,12 @@ const NotFound = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-24 text-center">
 
-      <h2 className="text-2xl font-bold text-red-500">
-        Appointment not found
+      <h2 className="text-3xl font-black text-red-500">
+        Doctor Not Found
       </h2>
 
       <p className="text-slate-500 mt-2">
-        Please log in to view protected appointment details.
+        Please login to view doctor details.
       </p>
 
     </div>

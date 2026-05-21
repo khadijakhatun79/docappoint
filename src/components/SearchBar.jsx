@@ -1,54 +1,47 @@
-
 "use client";
 
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 import { useState } from "react";
 
-const SearchBar = () => {
-  const [search, setSearch] = useState();
+export default function SearchBar() {
+
+  const [search, setSearch] = useState("");
+
   const router = useRouter();
-  const searchParams = useSearchParams();
-  // console.log(searchParams);
+  const params = useSearchParams();
 
   const handleSearch = () => {
-    const params = new URLSearchParams(searchParams.toString())
-    // ?filter= ?searchTerm=node
-    if (search) {
-      params.set("searchTerm", search)
+
+    const url = new URLSearchParams(params.toString());
+
+    if (search.trim()) {
+      url.set("search", search);
     } else {
-      params.delete("searchTerm")
+      url.delete("search");
     }
-    router.push(`/courses?${params.toString()}`)
 
-
-  }
+    router.push(`/appointment?${url.toString()}`);
+  };
 
   return (
-    <div className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all overflow-hidden">
-
-      <div className="pl-5 text-slate-400">
-        <Search className="w-5 h-5" />
-      </div>
+    <div className="flex border rounded-xl overflow-hidden bg-white">
 
       <input
+        type="text"
+        className="flex-1 p-3 outline-none"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        type="text"
-        placeholder="Search for courses (e.g. Next.js, Web Design...)"
-        className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
+        placeholder="Search doctor..."
       />
 
       <button
         onClick={handleSearch}
-        className="h-10 px-6 mr-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
-
+        className="bg-[#F96363] text-white px-5 flex items-center justify-center"
       >
-        Search
+        <Search className="w-5 h-5" />
       </button>
+
     </div>
   );
-};
-
-export default SearchBar;
+}

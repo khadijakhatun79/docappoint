@@ -59,7 +59,7 @@ export default function BookingButton({ doctor }) {
       className="w-full font-bold bg-[#F96363]"
       onPress={handleBooking}
     >
-      Book Appointment
+      Book Appointment  
     </Button>
-  );
+  ); 
 }

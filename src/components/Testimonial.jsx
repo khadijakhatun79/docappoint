@@ -96,8 +96,8 @@ const TestimonialSection = () => {
 
       {/* Background blur shape */}
       <div className="absolute -top-20 -right-20 w-72 h-72 bg-[#F96363]/10 rounded-full blur-3xl"></div>
-    </section>
+    </section>  
   );
 };
 
-export default TestimonialSection;
+export default TestimonialSection; 

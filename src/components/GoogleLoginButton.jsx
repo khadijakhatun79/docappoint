@@ -5,9 +5,8 @@ import Image from "next/image";
 
 const GoogleLoginButton = () => {
 
-
     return (
-        <div className="space-y-4">
+        <div className="space-y-4"> 
             <Button
                 variant="bordered"
                 className="w-full h-12 font-bold rounded-2xl border-slate-200 hover:bg-slate-50 transition-colors gap-3"

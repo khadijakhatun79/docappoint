@@ -20,22 +20,32 @@ const FeaturedCard = ({ appointment = {} }) => {
     fee,
   } = appointment;
 
-  /* ================= LOGIN CHECK ================= */
-  const isLoggedIn =
-    typeof window !== "undefined" &&
-    document.cookie.includes("token=");
+  // ================= SAFE AUTH CHECK =================
+  const isAuthenticated = () => {
+    if (typeof window === "undefined") return false;
 
-  /* ================= HANDLE CLICK ================= */
+    const token = localStorage.getItem("token");
+
+    return (
+      token &&
+      token !== "undefined" &&
+      token !== "null" &&
+      token.trim() !== ""
+    );
+  };
+
+  // ================= HANDLE CLICK =================
   const handleClick = () => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated()) {
       router.push("/login");
-    } else {
-      router.push(`/appointment/${_id}`);
+      return;
     }
+
+    router.push(`/appointment/${_id}`);
   };
 
   return (
-    <div className="group relative flex flex-col bg-white rounded-3xl border overflow-hidden">
+    <div className="group flex flex-col bg-white rounded-3xl border overflow-hidden">
 
       {/* IMAGE */}
       <div className="relative aspect-[16/10]">
@@ -62,7 +72,8 @@ const FeaturedCard = ({ appointment = {} }) => {
       {/* CONTENT */}
       <div className="p-6 space-y-4">
 
-        <h3 onClick={handleClick} 
+        <h3
+          onClick={handleClick}
           className="text-xl font-bold cursor-pointer hover:text-[#F96363]"
         >
           {name}
@@ -90,10 +101,11 @@ const FeaturedCard = ({ appointment = {} }) => {
             </p>
           </div>
 
-          <Button onClick={handleClick}
+          <Button
+            onClick={handleClick}
             className="bg-[#F96363] text-white font-bold rounded-full px-5"
           >
-            View Details 
+            View Details
           </Button>
 
         </div>

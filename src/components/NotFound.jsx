@@ -6,10 +6,10 @@ const NotFound = () => {
             <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto text-muted-foreground">
                 <Search className="w-10 h-10" />
             </div>
-            <h3 className="text-xl font-bold">No courses found</h3>
+            <h3 className="text-xl font-bold">No Doctors found</h3>
             <p className="text-muted-foreground">Try adjusting your search or filters.</p>
         </div>
     );
-};
+}; 
 
-export default NotFound;
+export default NotFound; 

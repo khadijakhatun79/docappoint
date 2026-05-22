@@ -47,13 +47,13 @@ const AppointmentBooking = () => {
       doctor: "",
       department: "",
       message: "",
-      agree: false,
+      agree: false, 
     });
   };
 
   return (
     <section className="relative py-28 bg-[url('/assets/video_bg_1.jpg')] bg-cover bg-center">
-
+ 
       {/* OVERLAY */}
       <div
         className="absolute inset-0"
@@ -66,100 +66,90 @@ const AppointmentBooking = () => {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
         {/* LEFT FORM */}
-        <div className="bg-white/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/20">
+        {/* LEFT SIDE - TABLE */}
+<div className="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/20">
 
-          {/* TITLE */}
-          <div className="mb-8">
-            <p className="text-[#F96363] font-bold uppercase text-xs tracking-widest">
-              Book Appointment
-            </p>
+  {/* TITLE */}
+  <div className="mb-6">
+    <p className="text-[#F96363] font-bold uppercase text-xs tracking-widest">
+      Doctor Schedule
+    </p>
 
-            <h2 className="text-3xl font-black text-slate-900 mt-2 leading-snug">
-              Book an Appointment for{" "}
-              <span className="text-[#F96363]">Expert Consultation</span>
-            </h2>
+    <h2 className="text-3xl font-black text-slate-900 mt-2">
+      Available Time & Hospitals
+    </h2>
+  </div>
 
-            <p className="text-slate-500 mt-2 text-sm">
-              Fill out the form and get connected with top doctors instantly.
-            </p>
-          </div>
+  {/* TABLE */}
+  <div className="overflow-x-auto">
+    <table className="w-full text-sm text-left border border-slate-200 rounded-xl overflow-hidden">
 
-          {/* FORM */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+      <thead className="bg-slate-100 text-slate-700">
+        <tr>
+          <th className="p-3">Days</th>
+          <th className="p-3">Time</th>
+          <th className="p-3">Hospital</th>
+        </tr>
+      </thead>
 
-            {/* NAME + EMAIL */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <tbody>
 
-              <input
-                name="name"
-                value={form.name}
-                placeholder="Patient Name"
-                className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#F96363] outline-none transition"
-                onChange={handleChange}
-              />
+        <tr className="border-t">
+          <td className="p-3 font-semibold">Sat-Thu</td>
+          <td className="p-3">8:00AM - 6:00PM</td>
+          <td className="p-3">Ibn Sina Hospital</td>
+        </tr>
 
-              <input
-                name="email"
-                value={form.email}
-                placeholder="Email Address"
-                className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#F96363] outline-none transition"
-                onChange={handleChange}
-              />
-            </div>
+        <tr className="border-t">
+          <td className="p-3 font-semibold">Sat-Thu</td>
+          <td className="p-3">6:00PM - 7:00PM</td>
+          <td className="p-3">Central Hospital</td>
+        </tr>
 
-            {/* DOCTOR */}
-            <select
-              name="doctor"
-              value={form.doctor}
-              className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#F96363] outline-none"
-              onChange={handleChange}
-            >
-              <option value="">Choose Doctor</option>
-              <option>Dr. Rahman</option>
-              <option>Dr. Sultana</option>
-              <option>Dr. Karim</option>
-            </select>
+        <tr className="border-t">
+          <td className="p-3 font-semibold">Sun-Fri</td>
+          <td className="p-3">7:00PM - 6:00PM</td>
+          <td className="p-3">Apollo Hospital</td>
+        </tr>
 
-            {/* MESSAGE */}
-            <textarea
-              name="message"
-              value={form.message}
-              placeholder="Write appointment note..."
-              rows={4}
-              className="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#F96363] outline-none"
-              onChange={handleChange}
-            />
+        <tr className="border-t">
+          <td className="p-3 font-semibold">Sun-Tue</td>
+          <td className="p-3">8:00PM - 6:00PM</td>
+          <td className="p-3">NextGen Kids Hospital</td>
+        </tr>
 
-            {/* CHECKBOX */}
-            <label className="flex items-center gap-2 text-sm text-slate-600">
-              <input
-                type="checkbox"
-                name="agree"
-                checked={form.agree}
-                onChange={handleChange}
-                className="accent-[#F96363]"
-              />
-              I agree to Terms & Privacy Policy
-            </label>
+        <tr className="border-t">
+          <td className="p-3 font-semibold">Sat-Thu</td>
+          <td className="p-3">8:00PM - 6:00PM</td>
+          <td className="p-3">Blossom Pediatric Care</td>
+        </tr>
 
-            {/* BUTTON */}
-            <Button
-              type="submit"
-              className="w-full bg-[#F96363] hover:bg-[#e05252] text-white font-bold py-3 rounded-xl transition-all shadow-lg"
-            >
-              Make Appointment
-            </Button>
-          </form>
+      </tbody>
+    </table>
+  </div>
 
-          {/* CALL INFO */}
-          <div className="mt-8 flex items-center gap-3 p-4 rounded-xl border bg-slate-50">
-            <Phone className="text-[#F96363]" />
-            <div>
-              <p className="text-xs text-slate-500">Emergency Contact</p>
-              <p className="font-bold text-slate-800">+880 1712-345678</p>
-            </div>
-          </div>
-        </div>
+  {/* INFO BOX */}
+  <div className="mt-6 p-5 rounded-2xl bg-slate-50 border">
+
+    <span className="font-bold text-slate-800 text-lg">
+      Time’s not flexible?
+    </span>
+
+    <p className="text-sm text-slate-500 mt-2">
+      We offer high-quality, patient-centered healthcare for personalized care and excellent results.
+    </p>
+
+    <a
+      href="/contact"
+      className="inline-flex items-center gap-2 mt-4 text-[#F96363] font-bold hover:underline"
+    >
+      Find a Consultant →
+    </a>
+
+  </div>
+
+</div>
+        
 
         {/* RIGHT VIDEO */}
         <div className="flex justify-center">

@@ -228,7 +228,7 @@ export default async function AppointmentDetails({ params }) {
             {/* Booking Button */}
             <BookingButton doctor={doctor} />
 
-            <p className="text-center text-xs text-slate-500 font-bold">
+            <p className=" text-xs text-slate-500 font-bold">
               Secure Booking • Trusted Healthcare
             </p>
 

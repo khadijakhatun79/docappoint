@@ -4,19 +4,21 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { fetchAppointments } from "@/lib/appointment/data";
 
 import { Button } from "@heroui/react";
-import { BookOpen, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
 
 const AppointmentsPage = async ({ searchParams }) => {
 
-  const appointments = await fetchAppointments(
-    searchParams?.search || ""
-  );
+ 
+  const params = await searchParams;
+
+  const search = params?.search || "";
+
+  const appointments = await fetchAppointments(search);
 
   return (
     <div className="min-h-screen bg-slate-50">
 
-    
-    <Breadcrumb></Breadcrumb>
+      <Breadcrumb />
 
       {/* Header */}
       <AppointmentHeader />
